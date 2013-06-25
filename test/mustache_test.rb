@@ -25,8 +25,8 @@ end_simple
   end
 
   def test_strict_collection
-    collection = [1,2,3]
-    assert_equal Mustache.render("{{- foo }}{{.}}{{/ foo }}", { foo: collection }), collection.join("")
+    context = {foo: [1,2,3]}
+    assert_equal Mustache.render("{{- foo }}{{.}}{{/ foo }}", context), context[:foo].join("")
   end
 
   def test_passenger

@@ -119,6 +119,8 @@ class Mustache
       compiled
     end
 
+    alias_method :on_collection, :on_section
+
     # Fired when we find an inverted section. Just like `on_section`,
     # we're passed the inverted section name and the array of tokens.
     def on_inverted_section(name, offset, content, raw, delims)

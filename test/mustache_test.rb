@@ -20,6 +20,11 @@ end_simple
     assert_equal schema[:foo].first[:bar].class, String
   end
 
+  def test_strict_collection
+    collection = [1,2,3]
+    assert_equal Mustache.render("{{- foo }}{{.}}{{/ foo }}", { foo: collection }), collection.join("")
+  end
+
   def test_passenger
     assert_equal <<-end_passenger, Passenger.to_text
 <VirtualHost *>

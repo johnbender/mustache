@@ -14,6 +14,12 @@ You have just won $10000!
 end_simple
   end
 
+  def test_schema_generator
+    schema = Mustache.schema( "{{- foo }} {{ bar }} {{/ foo }}" )
+    assert_equal schema[:foo].class, Array
+    assert_equal schema[:foo].first[:bar].class, String
+  end
+
   def test_passenger
     assert_equal <<-end_passenger, Passenger.to_text
 <VirtualHost *>

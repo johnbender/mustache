@@ -2,6 +2,7 @@ require 'cgi'
 
 require 'mustache/parser'
 require 'mustache/generator'
+require 'mustache/schema_generator'
 
 class Mustache
   # A Template represents a Mustache template. It compiles and caches
@@ -41,6 +42,10 @@ class Mustache
 
       # Call the newly rewritten version of #render
       render(context)
+    end
+
+    def render_schema(to_ruby=true)
+      SchemaGenerator.new.generate(tokens(@source))
     end
 
     # Does the dirty work of transforming a Mustache template into an

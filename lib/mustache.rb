@@ -84,6 +84,10 @@ class Mustache
     new.render(*args)
   end
 
+  def self.schema(*args)
+    new.schema(*args)
+  end
+
   class << self
     alias_method :to_html, :render
     alias_method :to_text, :render
@@ -128,6 +132,10 @@ class Mustache
 
   alias_method :to_html, :render
   alias_method :to_text, :render
+
+  def schema(template)
+    templateify(template).render_schema
+  end
 
   # Context accessors.
   #

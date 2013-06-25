@@ -16,14 +16,12 @@ end_simple
 
   def test_schema_collection
     schema = Mustache.schema( "{{- foo }} {{ bar }} {{/ foo }}" )
-    assert_equal schema[:foo].class, Array
-    assert_equal schema[:foo].first[:bar].class, String
+    assert_equal schema, {:foo=>[{:bar=>""}]}
   end
 
   def test_schema_section
     schema = Mustache.schema( "{{# foo }} {{ bar }} {{/ foo }}" )
-    assert_equal schema[:foo].class, Hash
-    assert_equal schema[:foo][:bar].class, String
+    assert_equal schema, {:foo=>{:bar=>""}}
   end
 
   def test_strict_collection

@@ -14,10 +14,16 @@ You have just won $10000!
 end_simple
   end
 
-  def test_schema_generator
+  def test_schema_collection
     schema = Mustache.schema( "{{- foo }} {{ bar }} {{/ foo }}" )
     assert_equal schema[:foo].class, Array
     assert_equal schema[:foo].first[:bar].class, String
+  end
+
+  def test_schema_section
+    schema = Mustache.schema( "{{# foo }} {{ bar }} {{/ foo }}" )
+    assert_equal schema[:foo].class, Hash
+    assert_equal schema[:foo][:bar].class, String
   end
 
   def test_strict_collection
